@@ -1,10 +1,6 @@
 name: Automação Central de Configuração do GitHub Pages
 
 on:
-  # Executa periodicamente a cada 10 minutos para identificar novos repositórios sincronizados
-  schedule:
-    - cron: '*/10 * * * *'
-
   # Permite disparo manual com ou sem repositório específico
   workflow_dispatch:
     inputs:
@@ -53,6 +49,7 @@ jobs:
           node-version: 22
 
       - name: Executar Automação com PAGES_AUTOMATION_TOKEN
+        if: ${{ secrets.PAGES_AUTOMATION_TOKEN != '' }}
         env:
           PAGES_AUTOMATION_TOKEN: ${{ secrets.PAGES_AUTOMATION_TOKEN }}
           TARGET_REPO: ${{ inputs.target_repo || github.event.client_payload.repo || '' }}

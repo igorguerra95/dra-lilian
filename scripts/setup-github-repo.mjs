@@ -17,9 +17,9 @@ const TARGET_REPO = (process.env.TARGET_REPO || '').trim();
 const TARGET_OWNER = (process.env.TARGET_OWNER || '').trim();
 
 if (!GITHUB_TOKEN) {
-  console.error('❌ ERRO: O segredo PAGES_AUTOMATION_TOKEN não foi encontrado nas variáveis de ambiente.');
-  console.error('   Certifique-se de que o segredo foi cadastrado no repositório central modelo-previas.');
-  process.exit(1);
+  console.log('ℹ️ O segredo PAGES_AUTOMATION_TOKEN não está configurado neste repositório.');
+  console.log('   Automação central ignorada com sucesso (o deploy continuará normalmente via deploy.yml).');
+  process.exit(0);
 }
 
 const headers = {
